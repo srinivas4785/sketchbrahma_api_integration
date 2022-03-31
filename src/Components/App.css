@@ -1,0 +1,13 @@
+.main-block{
+    margin: 8px;
+    padding: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid black;
+    width: 100vw;
+
+}
+
+img {
+    width: 250px;
+    padding-right: 0px;
+}

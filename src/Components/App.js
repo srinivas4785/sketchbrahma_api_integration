@@ -5,8 +5,8 @@ import './App.css'
 
 function Navcomp (){
   
-  const [desc,setDesc] = useState([])
-  const [name,setName] = useState([])
+  const [firstApiResponse,setFirstApiResponse] = useState([])
+  const [secondApiResponse,setSecondApiResponse] = useState([])
 
   const fetchData = () =>{
     const descApi = "https://www.themealdb.com/api/json/v1/1/categories.php"
@@ -18,15 +18,15 @@ function Navcomp (){
     axios.all([getDesc,getName]).then(
       axios.spread((...allData) =>{
         const allDataDesc = allData[0].data.categories[Math.floor(Math.random()* allData[0].data.categories.length)];
-        let des = allDataDesc.strCategoryDescription;
-        let img = allDataDesc.strCategoryThumb;
+        let description = allDataDesc.strCategoryDescription;
+        let categoryImage = allDataDesc.strCategoryThumb;
         const allDataName = allData[1].data.meals[Math.floor(Math.random()* allData[1].data.meals.length)];
         let mealname = allDataName.strMeal;
-        let img2 = allDataName.strMealThumb;
+        let mealImage = allDataName.strMealThumb;
 
 
-        setDesc([des,img])
-        setName([mealname,img2])
+        setFirstApiResponse([description,categoryImage])
+        setSecondApiResponse([mealname,mealImage])
       })
     )
   }
@@ -42,12 +42,12 @@ function Navcomp (){
         <Row>
           <Col sm={6}>
             <p>
-            {desc[0]}
+            {firstApiResponse[0]}
             </p>
             
           </Col>
           <Col sm={6}>
-            <img src={desc[1]} />
+            <img src={firstApiResponse[1]} />
           </Col>
         </Row>
       </Container>
@@ -57,12 +57,12 @@ function Navcomp (){
         <Row>
           <Col>
             <p>
-            {name[0]}
+            {secondApiResponse[0]}
             </p>
             
           </Col>
           <Col>
-            <img src={name[1]} />
+            <img src={secondApiResponse[1]} />
           </Col>
         </Row>
       </Container> 
